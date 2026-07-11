@@ -6,7 +6,8 @@ const sessionSchema=new mongoose.Schema({
     experience:{type:String,required:true},
     topicsToFocus:{type:String,required:true},
     description:String,
-    questions:{type:mongoose.Schema.Types.ObjectId,ref:"Question"}
-})
+    questions:[{type:mongoose.Schema.Types.ObjectId,
+        ref:"Question"}],
+});
 
 module.exports=mongoose.model("Session",sessionSchema);
