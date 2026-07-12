@@ -6,6 +6,7 @@ const path=require("path");  //handling file path
 const connectDB = require("./config/db");
 const authRoutes=require("./routes/authRoutes")
 const sessionRoutes=require("./routes/sessionRoutes")
+const questionRoutes=require("./routes/questionRoutes")
 const app=express(); //express appp created
 
 //middleware to handle cors
@@ -25,7 +26,7 @@ app.use(express.json());  //json to java script object
 //routes
 app.use("/api/auth",authRoutes);
 app.use("/api/sessions",sessionRoutes);
-// app.use("/api/questions",questionRoutes);
+app.use("/api/questions",questionRoutes);
 
 // app.use("/api/ai/generate-questions",protect,generateInterviewQuestions);
 // app.use("/api/ai/generate-explaination",protect,generateConceptExplaination);
