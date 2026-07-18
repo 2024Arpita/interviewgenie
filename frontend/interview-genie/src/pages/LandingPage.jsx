@@ -6,10 +6,10 @@ import { APP_FEATURES } from "../utils/data";
 import { LuSparkles } from "react-icons/lu";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
-import Modal from "./../components/Loader/Modal";
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
 import ProfileInfoCard from './../components/Cards/ProfileInfoCard';
+import Modal from './../components/Modal';
 const LandingPage = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
