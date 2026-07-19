@@ -64,8 +64,8 @@ const QuestionCard = ({
                   onLearnMore();
                 }}
               >
-                <LuSparkles className="hidden md:block" />
-                <span>Learn More</span>
+                <LuSparkles />
+                <span className="hidden md:block" >Learn More</span>
               </button>
             </div>
             <button
