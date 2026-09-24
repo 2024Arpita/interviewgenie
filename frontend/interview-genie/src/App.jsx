@@ -6,6 +6,7 @@ import InterviewPrep from './pages/InterviewPrep/InterviewPrep';
 // import Login from './pages/Auth/Login';
 // import SignUp from './pages/Auth/SignUp';
 import Dashboard from './pages/Home/Dashboard';
+import MockInterview from './pages/MockInterview/MockInterview';
 import UserProvider from './context/userContext';
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path='/signUp' element={<SignUp/>}/> */}
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/interview-prep/:sessionId' element={<InterviewPrep/>}/>
+          <Route path='/mock-interview' element={<MockInterview/>}/>
         </Routes>
       </Router>
       <Toaster 

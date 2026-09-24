@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { LuPlus } from "react-icons/lu";
+import { LuPlus, LuBrain } from "react-icons/lu";
 import { CARD_BG } from "./../../utils/data";
 import toast from "react-hot-toast";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
@@ -37,19 +37,25 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-7 pt-1 pb-6 px-4 md:px-0">
           {sessions?.map((data, index) => (
             <SummaryCard
-              key={data?.id}
+              key={data?._id || index}
               colors={CARD_BG[index % CARD_BG.length]}
               role={data?.role || ""}
               topicsToFocus={data?.topicsToFocus || ""}
               experience={data?.experience || ""}
-              questions={data?.questions.length || "-"}
+              questions={data?.questions?.length || "-"}
               description={data?.description || ""}
               lastUpdated={
                 data?.updatedAt
                   ? moment(data.updatedAt).format("Do MMM YYYY")
                   : ""
               }
-              onSelect={() => navigate(`/interview-prep/${data?._id}`)}
+              onSelect={() => {
+                if (data?.mode === "mock") {
+                  navigate("/mock-interview");
+                } else {
+                  navigate(`/interview-prep/${data?._id}`);
+                }
+              }}
               onDelete={() => setOpenDeleteAlert({ open: true, data })}
             />
           ))}
@@ -60,6 +66,13 @@ const Dashboard = () => {
         >
           <LuPlus className="text-2xl text-white" />
           Add New
+        </button>
+        <button
+          className="h-12 md:h-12 flex items-center justify-center gap-3 bg-black text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-orange-600/15 hover:text-black transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-48 md:right-52"
+          onClick={() => navigate("/mock-interview")}
+        >
+          <LuBrain className="text-xl text-white" />
+          Mock Interview
         </button>
       </div>
       <Modal

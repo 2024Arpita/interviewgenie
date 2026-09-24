@@ -48,7 +48,40 @@ Task:
 Important: Do NOT add any extra text outside the JSON format. Only return valid JSON.
 `;
 
+const answerEvaluationPrompt = (question, userAnswer, role, experience) => `
+You are an expert technical interviewer evaluating a candidate's answer to an interview question.
+
+Context:
+- Role: ${role}
+- Experience Level: ${experience} years
+- Question: "${question}"
+- Candidate's Answer: "${userAnswer}"
+
+Evaluate the candidate's answer based on:
+1. Technical correctness
+2. Completeness
+3. Understanding of the concept
+4. Relevance to the question
+5. Clarity of explanation
+
+IMPORTANT: Do NOT judge the candidate based on grammar or English fluency unless it affects the clarity of the technical answer.
+
+Return ONLY a valid JSON object in this exact format:
+
+{
+  "score": <number between 0 and 10>,
+  "strengths": ["strength 1", "strength 2"],
+  "weaknesses": ["weakness 1", "weakness 2"],
+  "missingConcepts": ["concept 1", "concept 2"],
+  "feedback": "Overall feedback paragraph here",
+  "idealAnswer": "A concise, interview-ready ideal answer here"
+}
+
+Important: Return ONLY valid JSON. Do NOT add any extra text, markdown, or code fences.
+`;
+
 module.exports = {
   questionAnswerPrompt,
   conceptExplainPrompt,
+  answerEvaluationPrompt,
 };

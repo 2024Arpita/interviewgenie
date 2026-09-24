@@ -6,6 +6,17 @@ const questionSchema =new mongoose.Schema({
     answer:String,
     note:String,
     isPinned:{type:Boolean,default:false},
+    userAnswer:{type:String,default:null},
+    evaluation:{
+        score:{type:Number,default:null},
+        strengths:[String],
+        weaknesses:[String],
+        missingConcepts:[String],
+        feedback:{type:String,default:null},
+        idealAnswer:{type:String,default:null},
+    },
+    score:{type:Number,default:null},
+    isAnswered:{type:Boolean,default:false},
 },{timestamps :true});
 
 module.exports=mongoose.model("Question",questionSchema);

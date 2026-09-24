@@ -8,14 +8,14 @@ const authRoutes=require("./routes/authRoutes")
 const sessionRoutes=require("./routes/sessionRoutes")
 const questionRoutes=require("./routes/questionRoutes")
 const {protect} = require("./middlewares/authMiddleware");
-const { generateInterviewQuestions, generateConceptExplaination } = require("./controllers/aiController");
+const { generateInterviewQuestions, generateConceptExplaination, evaluateAnswer } = require("./controllers/aiController");
 const app=express(); //express appp created
 
 //middleware to handle cors
 app.use(
     cors({
         origin:"*",
-        methods:["GET","POST","PUT","DELETE"],
+        methods:["GET","POST","PUT","DELETE","PATCH"],
         allowedHeaders:["Content-Type","Authorization"],
     })
 );
@@ -32,6 +32,7 @@ app.use("/api/questions",questionRoutes);
 
 app.use("/api/ai/generate-questions",protect,generateInterviewQuestions);
 app.use("/api/ai/generate-explaination",protect,generateConceptExplaination);
+app.post("/api/ai/evaluate-answer",protect,evaluateAnswer);
 
 ///serve uploads folder
 app.use("/uploads",express.static(path.join(__dirname,"uploads"),{}));
